@@ -42,16 +42,74 @@ let jugadoresEquipo2 = [["Lonzo Ball", 2, "BA", 26, "1.98 m", "UCLA"],
 ["Nikola Vucevic", 9, "C", 33, "2.08 m", "USC"],
 ["Coby White", 0, "BA", 24, "1.96 m", "North Carolina"],
 ["Patrick Williams", 44, "AP", 23, "2.01 m", "Florida State"]];
-/*
 
-  document.write("No. " + jugadoresEquipo1[i][1] + " Nombre " + jugadoresEquipo1[i][0]);
-  document.write("<br>")
-}*/
+let marcadorEquipo1 = 0;
+let marcadorEquipo2 = 0;
 
-function ponerJugadores() {
-  let htmlElementoJugadores = document.getElementById("lista-equipo1");
+function equipoMarco(noEquipo, puntos, jugador) {
+  if (noEquipo === 1) {
+    marcadorEquipo1 += puntos;
+  } else {
+    marcadorEquipo2 += puntos;
+  }
+  let htmlElementoMarcador = document.getElementById(
+    noEquipo === 1
+      ? "marcadorEquipo1"
+      : "marcadorEquipo2");
+  htmlElementoMarcador.innerText = noEquipo === 1 ? marcadorEquipo1 : marcadorEquipo2;
+  let htmlElementoJugadoresAnotadores = document.getElementById(
+    noEquipo === 1
+      ? "listaAnotadoresEquipo1"
+      : "listaAnotadoresEquipo2");
+  /*  let arregloJugadores;
+    if (noEquipo === 1) {
+      arregloJugadores = jugadoresEquipo1;
+    } else {
+      arregloJugadores = jugadoresEquipo2;
+    }*/
+
+  const anotadorNumero = traeNumPlayera(
+    (noEquipo === 1 ? jugadoresEquipo1 : jugadoresEquipo2),
+    jugador);
+  let anotador = `<tr>
+                  <td>${anotadorNumero != undefined ? anotadorNumero : '--'}</td>
+                  <td>${jugador}</td>
+                  <td>${puntos}</td>
+                </tr>`;
+  htmlElementoJugadoresAnotadores.innerHTML = htmlElementoJugadoresAnotadores.innerHTML + anotador;
+}
+
+function traeNumPlayera(arregloJugadores, jugador) {
+  let i = 0;
+  while (i < arregloJugadores.length) {
+    if (arregloJugadores[i][0] === jugador) {
+      return arregloJugadores[i][1];
+    }
+    i++;
+  }
+  return "--";
+}
+
+function ponerJugadores(noEquipo) {
+  let jugadoresEquipo;
+  let nombreEquipo;
+  let htmlElementoJugadores;
+  let equipoNombre;
+
+  if (noEquipo === 1) {
+    jugadoresEquipo = jugadoresEquipo1;
+    nombreEquipo = equipo1;
+    htmlElementoJugadores = document.getElementById("lista-equipo1");
+    equipoNombre = document.getElementById("equipo1nombre");
+  } else {
+    jugadoresEquipo = jugadoresEquipo2;
+    nombreEquipo = equipo2;
+    htmlElementoJugadores = document.getElementById("lista-equipo2");
+    equipoNombre = document.getElementById("equipo2nombre");
+  }
+
   let jugador = "";
-  for (i = 0; i < jugadoresEquipo1.length; i++) {
+  for (i = 0; i < jugadoresEquipo.length; i++) {
     /*let numeroJugador;
     if (jugadoresEquipo1[i][1] != undefined) {
       numeroJugador = jugadoresEquipo1[i][1];
@@ -59,13 +117,17 @@ function ponerJugadores() {
       numeroJugador = "--";
     }*/
     jugador += "<tr>" +
-      "<td>" + (jugadoresEquipo1[i][1] != undefined ? jugadoresEquipo1[i][1] : "--") + "</td>" +
-      "<td>" + jugadoresEquipo1[i][0] + "</td>" +
-      "<td>" + jugadoresEquipo1[i][2] + "</td>" +
-      "<td>" + jugadoresEquipo1[i][4] + "</td>" +
-      "<td>" + jugadoresEquipo1[i][5] + "</td>" +
-      "<td></td></tr>";
+      "<td>" + (jugadoresEquipo[i][1] != undefined ? jugadoresEquipo[i][1] : "--") + "</td>" +
+      "<td>" + jugadoresEquipo[i][0] + "</td>" +
+      "<td>" + jugadoresEquipo[i][2] + "</td>" +
+      "<td>" + jugadoresEquipo[i][4] + "</td>" +
+      "<td>" + jugadoresEquipo[i][5] + "</td>" +
+      "<td>" +
+      "<button onclick=\"equipoMarco(" + noEquipo + ", 1, '" + jugadoresEquipo[i][0] + "')\">1</button>" +
+      "<button onclick=\"equipoMarco(" + noEquipo + ", 2, '" + jugadoresEquipo[i][0] + "')\">2</button>" +
+      "<button onclick=\"equipoMarco(" + noEquipo + ", 3, '" + jugadoresEquipo[i][0] + "')\">3</button>" +
+      "</td></tr>";
   }
   htmlElementoJugadores.innerHTML = jugador;
+  equipoNombre.innerText = nombreEquipo;
 }
-console.log(jugador);

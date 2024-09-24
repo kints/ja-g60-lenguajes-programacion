@@ -20,7 +20,9 @@
 <body>
   <header class="d-flex bd-secondary">
     <img src="./assets/img/ESPN-Logo-1985-present.jpg" alt="" width="100uw">
-    <h1>Lo último en deportes</h1><button onclick="ponerJugadores()">Poner equipo 1</button>
+    <h1>El líder mundial en deportes</h1>
+    <button onclick="ponerJugadores(1)">Poner equipo 1</button>
+    <button onclick="ponerJugadores(2)">Poner equipo 2</button>
   </header>
   <div class="container-fluid">
     <div class="row">
@@ -38,12 +40,72 @@
             </tr>
           </thead>
           <tbody id="lista-equipo1">
+          </tbody>
+        </table>
+      </div>
+      <div class="col-4">
+        <div class="row">
+          <div class="col-12 text-center"><span class="text-center vs">VS</span></div>
+        </div>
+        <div class="row">
+          <div class="col-6 text-center"><strong class="marcador" id="marcadorEquipo1"></strong></div>
+          <div class="col-6 text-center"><strong class="marcador" id="marcadorEquipo2"></strong></div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <h3>Anotadores <span id="equipo1AnotadoresNombre"></span></h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Nombre</th>
+                  <th>Puntos</th>
+                </tr>
+              </thead>
+              <tbody id="listaAnotadoresEquipo1">
+                
+              </tbody>
+            </table>
+          </div>
+          <div class="col-6">
+            <h3>Anotadores <span id="equipo2AnotadoresNombre"></span></h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Nombre</th>
+                  <th>Puntos</th>
+                </tr>
+              </thead>
+              <tbody id="listaAnotadoresEquipo2">
+
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div class="col-12"><img src="./assets/img/bg-court.svg" alt=""></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <h2><span id="equipo2nombre"></span></h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Nombre</th>
+              <th>Posición</th>
+              <th>Altura</th>
+              <th>Universidad</th>
+              <th>Anotó puntos</th>
+            </tr>
+          </thead>
+          <tbody id="lista-equipo2">
 
           </tbody>
         </table>
       </div>
-      <div class="col-4"></div>
-      <div class="col-4"></div>
     </div>
   </div>
 </body>
